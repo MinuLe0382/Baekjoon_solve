@@ -33,3 +33,15 @@ if answer:
     print(max(answer))
 else:
     print(c)
+    
+# 시간초과가 발생한 코드
+'''
+if target == n:
+    answer.append(c)
+    l += 1
+'''
+# 타겟이 n과 같으면 올려서 혹시 더 찾아볼 여지가 있는지 확인해야한다.
+# 따라서 l = c + 1로 해줘야한다.
+
+# 어느 부분에서 zerodivision error가 발생했음 
+
