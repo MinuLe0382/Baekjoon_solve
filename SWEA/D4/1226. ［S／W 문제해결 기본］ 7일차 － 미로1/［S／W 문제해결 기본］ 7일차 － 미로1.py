@@ -1,24 +1,27 @@
-dr = [-1, 1, 0, 0]
-dc = [0, 0, -1, 1]
-for _ in range(10):
-    tc = int(input())
-    flag = False
-    matrix = [list(map(int, input().rstrip())) for _ in range(16)]
-    # visited는 필요 없다. 1로 바꿔 줄 것임
+dy = [0, 0, 1, -1]
+dx = [1, -1, 0, 0]
+
+for tc in range(1, 11):
+    matrix = []
+    a = int(input())
+    for i in range(16):
+        matrix.append(list(map(int, input().rstrip())))
+        
     stack = [(1, 1)]
+    end = False
     while stack:
-        x, y = stack.pop()
+        cur = stack.pop()
         for d in range(4):
-            ny = y + dr[d]
-            nx = x + dc[d]
-            if matrix[nx][ny] == 0:
-                stack.append((nx, ny))
-                matrix[nx][ny] = 1
-            elif matrix[nx][ny] == 3:
+            nx, ny = cur[1] + dx[d], cur[0] + dy[d]
+            if matrix[ny][nx] == 0:
+                stack.append((ny, nx))
+                matrix[ny][nx] = 1
+            elif matrix[ny][nx] == 3:
                 print(f"#{tc} {1}")
-                flag = True
+                end = True
                 break
-        if flag == True:
+        if end:
             break
-    if flag == False:
+            
+    if end == False:
         print(f"#{tc} {0}")
