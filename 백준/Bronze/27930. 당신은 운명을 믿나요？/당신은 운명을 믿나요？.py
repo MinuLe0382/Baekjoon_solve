@@ -1,16 +1,17 @@
+# set을 쓰면 순서가 고려되지 않는다. 그러면 queue를 써보는건 어떤가?
+from collections import deque
 s = input()
-
-aset = set(['Y','O','N','S','E','I'])
-bset = set(['K','O','R','E','A'])
+alist = deque(['Y','O','N','S','E','I'])
+blist = deque(['K','O','R','E','A'])
 for ch in s:
-    if ch in aset:
-        aset.remove(ch)
-        if len(aset) == 0:
+    if ch == alist[0]:
+        alist.popleft()
+        if len(alist) == 0:
             print('YONSEI')
             break
     
-    if ch in bset:
-        bset.remove(ch)
-        if len(bset) == 0:
+    if ch == blist[0]:
+        blist.popleft()
+        if len(blist) == 0:
             print('KOREA')
             break
