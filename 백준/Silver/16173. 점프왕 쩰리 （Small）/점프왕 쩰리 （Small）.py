@@ -12,7 +12,7 @@ queue = deque([(0, 0)])
 while queue:
     r, c = queue.popleft()
     mult = matrix[r][c]
-    if mult == 0:
+    if mult == 0: # 이런걸 도대체 왜 넣어놓았는지 얼탱이가 없다.
         continue
     for d in range(2):
         nr = r + (dr[d] * mult)
@@ -21,13 +21,11 @@ while queue:
             continue
         elif matrix[nr][nc] == -1:
             print('HaruHaru')
-            #queue = deque() # 이러면 바로 while에서 break 되지 않을까??
+            queue = deque() # 이러면 바로 while에서 break 되지 않을까??
             flag = True
             break
         else:
             queue.append((nr, nc))
-    if flag == True:
-        break
         
 if flag == False:
     print('Hing')
