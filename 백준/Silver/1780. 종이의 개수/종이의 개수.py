@@ -1,8 +1,11 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
 
 matrix = []
 for _ in range(n):
-    matrix.append(list(map(int, input().split())))
+    matrix.append(list(map(int, input().rstrip().split())))
 
 numbers = {-1 : 0, 0 : 0, 1 : 0}
 
