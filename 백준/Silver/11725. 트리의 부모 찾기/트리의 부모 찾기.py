@@ -1,24 +1,24 @@
 import sys
-sys.setrecursionlimit(10000000)
+input = sys.stdin.readline
 
-N = int(input()) # 간선의 갯수는 n - 1개로 확정이 된다.
-tree = [[] for _ in range(N + 1)]
+n = int(input())
+adj = [[] for _ in range(n + 1)]
+p = [[] for _ in range(n + 1)]
+for i in range(1, n):
+    a, b = map(int, input().rstrip().split())
+    adj[a].append(b)
+    adj[b].append(a)
 
-def DFS(cur, parent):
-    # 방문
-    result[cur] = parent
-    visited.add(cur)
-    for nxt in tree[cur]:
-        if nxt not in visited:
-            DFS(nxt, cur) # 어디를 타고 넘어왔는지의 정보를 가지고 간다.
-    # 탐색
-for i in range(N - 1):
-    x, y = map(int, input().split())
-    tree[x].append(y)
-    tree[y].append(x)
-
+stack = [1]
 visited = set()
-result = [0] * (N + 1)
-DFS(1, -1) # 1의 부모는 아무도 관심이 없다.
-for i in range(2, len(result)):
-    print(result[i])
+visited.add(1)
+while stack:
+    cur = stack.pop()
+    for nxt in adj[cur]:
+        if nxt not in visited:
+            stack.append(nxt)
+            visited.add(nxt)
+            p[nxt].append(cur)
+
+for i in range(2, n + 1):
+    print(*p[i])
