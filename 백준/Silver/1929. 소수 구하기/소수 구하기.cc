@@ -1,38 +1,30 @@
 #include <iostream>
-using namespace std;
-
 #define MAX 1000000
-
-int arr[MAX + 1]{ 0, };
+#include <cmath>
+int checker[MAX + 1] = { 0, };
 
 int main()
 {
-    int m, n;
-    cin >> m >> n;
+    int N, M = 0;
+    std::cin >> M >> N;
+    
+    for (int k = 2; k < N + 1; k++)
+        checker[k] = k;
 
-    for (int i = 2; i <= n; i++)
+    for (int i = 2; i * i <= N; i++)
     {
-        arr[i] = i;
-    }
-
-    for (int i = 2; i * i <= n; i++)
-    {
-        if (arr[i] == 0)
+        if (checker[i] != 0)
         {
-            continue;
-        }
-        for (int j = i * i; j <= n; j += i)
-        {
-            arr[j] = 0;
+            for (int j = i * i; j < N + 1; j += i)
+                checker[j] = 0;
         }
     }
 
-    for (int i = m; i <= n; i++)
+    for (int i = M; i < N + 1; i++)
     {
-        if (arr[i] != 0)
-        {
-            cout << arr[i] << '\n';
-        }
+        if (checker[i] != 0)
+            std::cout << checker[i] << '\n';
     }
+
     return 0;
 }
